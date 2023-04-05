@@ -2,7 +2,6 @@
   <span 
     :class="getBoardItemClasses"
     @click="selectField(field.id)">
-    {{ `${field.value}` }}
   </span>
 </template>
 

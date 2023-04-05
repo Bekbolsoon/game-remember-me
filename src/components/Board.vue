@@ -14,7 +14,7 @@
       </div>
     </transition>
 
-    <p class="difficult">Current difficult: <b>{{ difficult }}</b></p>
+    <p class="difficult">Текущая сложность: <b>{{ difficult }}</b></p>
     <p class="win" v-if="isWin">Поздравляем! Продолжаем играть!</p>
     <p class="fail" v-if="isFail">Вы проиграли. Попробуйте еще раз!</p>
 

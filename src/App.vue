@@ -6,7 +6,7 @@
       @user-selected-difficult="setDifficult" />
 
     <img class="logo" alt="Vue logo" src="./assets/logo.png" />
-    <h1 class="h1">Remember Me, Vue 3</h1>
+    <h1 class="h1">Remember Me on VUE 3</h1>
     <p>Запомни и открой все зеленые клетки</p>
 
     <Board 
@@ -59,7 +59,6 @@ export default {
 
 <style scoped>
 .main {
-  font-family: Arial, Helvetica, sans-serif;
   text-align: center;
 }
 .logo {

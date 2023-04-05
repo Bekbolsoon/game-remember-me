@@ -150,7 +150,7 @@ label {
   right: 0;
   top: 0;
   bottom: 0;
-  border-radius: 0 3px 3px 0;
+  border-radius: 0 .5rem .5rem 0;
   background-color: #35495e;
 }
 

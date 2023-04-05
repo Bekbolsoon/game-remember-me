@@ -6,8 +6,8 @@
       @user-selected-difficult="setDifficult" />
 
     <img class="logo" alt="Vue logo" src="./assets/logo.png" />
-    <h1 class="h1">Remember Me on VUE 3</h1>
-    <p>Запомни и открой все зеленые клетки</p>
+    <h1>Remember Me on VUE 3</h1>
+    <p>Запомни и открой все <span>зелёные</span> клетки</p>
 
     <Board 
       :sizeOfBoard="size" 
@@ -60,9 +60,23 @@ export default {
 <style scoped>
 .main {
   text-align: center;
+  color: #000;
 }
 .logo {
-  margin-top: 40px;
-  width: 100px;
+  margin-top: 4rem;
+  width: 10rem;
+}
+h1 {
+  margin-top: .5rem;
+  font-size: 2.5rem;
+}
+p {
+  margin-top: 2rem;
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+p span {
+  color: #41b883;
+  font-weight: 700;
 }
 </style>

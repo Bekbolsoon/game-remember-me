@@ -3,7 +3,7 @@
     <transition name="fade">
       <div 
         class="board"
-        :style="{ width: `${sizeOfBoard * 60}px` }"
+        :style="stylesBoard"
         v-if="notNextLevel">
           <BoardItem 
             v-for="field in fields" 
@@ -14,7 +14,7 @@
       </div>
     </transition>
 
-    <p class="difficult">Текущая сложность: <b>{{ difficult }}</b></p>
+    <p class="difficult">Текущая сложность: <span>{{ difficult }}</span></p>
     <p class="win" v-if="isWin">Поздравляем! Продолжаем играть!</p>
     <p class="fail" v-if="isFail">Вы проиграли. Попробуйте еще раз!</p>
 
@@ -94,6 +94,13 @@ export default {
       }
     );
 
+    const stylesBoard = computed( () => ({
+        display: 'grid',
+        gridTemplateColumns: 'repeat(' +  props.sizeOfBoard  + ', 1fr)',
+        gridTemplateRows: 'repeat(' +  props.sizeOfBoard  + ', 1fr)',
+        // height: document.querySelector('.board').offsetWidth + 'px'
+    }));
+
     return {
       gameStatus,
       fields,
@@ -103,48 +110,75 @@ export default {
       selectField,
       isWin,
       isFail,
-      notNextLevel
+      notNextLevel,
+      stylesBoard,
     }
   },
 }
 </script>
 
 <style scoped>
-  .fade-enter-active,
-  .fade-leave-active {
-    transition: opacity .5s ease;
-  }
-  .fade-enter-from,
-  .fade-leave-to {
-    opacity: 0;
-  }
-  .board-wrapper {
-    margin-bottom: 100px;
-  }
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity .5s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+.board-wrapper {
+  margin-top: 2rem;
+}
+.board {
+  background: #eee;
+  padding: 1rem;
+  width: 50rem;
+  height: 50rem;
+  margin: 0 auto;
+  grid-column-gap: .5rem;
+  grid-row-gap: .5rem;
+}
+.difficult {
+  margin-top: 2rem;
+  font-size: 1.4rem;
+  color: #000;
+}
+.difficult span {
+  font-weight: 700;
+  font-size: 1.6rem;
+}
+.btn {
+  background: #41b883;
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  border-radius: .5rem;
+  padding: 1rem 3rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  outline: none;
+}
+.btn:hover {
+  background: #42b983;
+}
+.btn:disabled {
+  opacity: .5;
+}
+.win,
+.fail {
+  margin-top: 1rem;
+  color: #41b883;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+.fail {
+  color: #ff000055;
+}
+
+@media (max-width: 500px) {
   .board {
-    background: #eee;
-    margin: 0 auto;
+    width: 32rem;
+    height: 32rem;
   }
-  .btn {
-    background: #42b983cc;
-    color: white;
-    border: none;
-    border-radius: 2px;
-    padding: 10px 30px;
-    margin: 10px 0;
-    cursor: pointer;
-    outline: none;
-  }
-  .btn:hover {
-    background: #42b983;
-  }
-  .btn:disabled {
-    opacity: .5;
-  }
-  .win {
-    color: #42b983;
-  }
-  .fail {
-    color: #ff000055;
-  }
+}
 </style>

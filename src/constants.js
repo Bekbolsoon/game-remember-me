@@ -11,8 +11,9 @@ export const GAME_SPEED = 2000;
 
 export const GAME_STATUS = {
   NONE: 0,
-  PREVIEW: 1,
-  STARTED: 2,
-  WIN: 3,
-  FAIL: 4,
+  CONSECUTIVE_PREVIEW: 1,
+  PREVIEW: 2,
+  STARTED: 3,
+  WIN: 4,
+  FAIL: 5,
 };

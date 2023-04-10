@@ -1,16 +1,14 @@
-import { FIELD, GAME_SPEED, GAME_STATUS } from '@/constants';
+import { FIELD, GAME_STATUS } from '@/constants';
 import { computed } from 'vue';
 
-export default function startGame(initFields, fields, difficult, numberOfItems, gameStatus) {  
-  const start = () => {
+export default function prepareGame(initFields, fields, difficult, numberOfItems, gameStatus) {  
+  const prepare = () => {
     initFields();
     fillFields();
   };
 
   /* Filling fields with the desired values */
   const fillFields = () => {
-    gameStatus.value = GAME_STATUS.PREVIEW;
-
     for (let i = 0; i < difficult.value; i++) {
       const index = rand(0, numberOfItems.value);
       if (fields.value[index].value !== FIELD.FILLED) {
@@ -19,10 +17,6 @@ export default function startGame(initFields, fields, difficult, numberOfItems, 
         i--;
       }
     }
-
-    setTimeout(() => {
-      gameStatus.value = GAME_STATUS.STARTED;
-    }, GAME_SPEED);
   };
 
   /* Calculation of random index (used to fill out the card) */
@@ -32,11 +26,13 @@ export default function startGame(initFields, fields, difficult, numberOfItems, 
 
   /* Ability to press a button 'Start' */
   const canStartGame = computed( () => {
-    return gameStatus.value !== GAME_STATUS.PREVIEW && gameStatus.value !== GAME_STATUS.WIN;
+    return gameStatus.value !== GAME_STATUS.PREVIEW 
+      && gameStatus.value !== GAME_STATUS.CONSECUTIVE_PREVIEW
+      && gameStatus.value !== GAME_STATUS.WIN;
   });
   
   return {
-    start,
+    prepare,
     canStartGame,
   }
 }

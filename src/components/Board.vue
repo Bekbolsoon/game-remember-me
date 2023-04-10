@@ -1,4 +1,5 @@
 <template>
+  {{ isConsecutive }}
   <div class="board-wrapper">
     <transition name="fade">
       <div 
@@ -23,10 +24,10 @@
 </template>
 
 <script>
-import { START_DIFFICULT, MAX_DIFFICULT } from '@/constants';
+import { START_DIFFICULT, MAX_DIFFICULT, GAME_STATUS, GAME_SPEED } from '@/constants';
 import BoardItem from './BoardItem';
 import initGame from './composables/initGame';
-import startGame from './composables/startGame';
+import prepareGame from './composables/prepareGame';
 import processGame from '@/components/composables/processGame'
 import { computed, watch, ref } from 'vue';
 
@@ -43,6 +44,10 @@ export default {
     customDifficult: {
       type: Number,
       required: false
+    },
+    isConsecutive: {
+      type: Boolean,
+      required: true
     },
     setNewSize: {
       type: Function,
@@ -61,7 +66,42 @@ export default {
     
     const { fields, difficult, gameStatus, initFields } = initGame(numberOfItems);
 
-    const { start, canStartGame } = startGame(initFields, fields, difficult, numberOfItems, gameStatus);
+    const { prepare, canStartGame } = prepareGame(initFields, fields, difficult, numberOfItems, gameStatus);
+
+    function start() {
+      prepare();
+      if (props.isConsecutive) {
+        gameStatus.value = GAME_STATUS.CONSECUTIVE_PREVIEW;
+        const idx = fields.value
+          .map((element, index) => (element.value === 1 ? index : null))
+          .filter((element) => element !== null);
+
+        const showFilledFields = () => {
+          const delay = 1000;
+          
+          idx.forEach((index, i) => {
+            setTimeout(() => {
+              fields.value[index].clicked = true;
+              if (i === idx.length - 1) {
+                setTimeout(() => {
+                  idx.forEach((index) => {
+                    fields.value[index].clicked = false;
+                  });
+                  gameStatus.value = GAME_STATUS.STARTED;
+                }, delay);
+              }
+            }, delay * i);
+          });
+        };
+
+        showFilledFields();
+      } else {
+        gameStatus.value = GAME_STATUS.PREVIEW;
+        setTimeout(() => {
+          gameStatus.value = GAME_STATUS.STARTED;
+        }, GAME_SPEED);
+      }
+    }
 
     const { selectField, isWin, isFail } = processGame(fields, gameStatus, difficult, start, initFields);
 
@@ -91,6 +131,12 @@ export default {
       () => props.customDifficult, 
       () => {
         difficult.value = props.customDifficult;
+      }
+    );
+    watch( 
+      () => props.isConsecutive, 
+      () => {
+        
       }
     );
 

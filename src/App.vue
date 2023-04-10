@@ -3,7 +3,8 @@
     <Settings 
       :sizeFromBoard="size"
       @user-selected-size="setSizeOfBoard"
-      @user-selected-difficult="setDifficult" />
+      @user-selected-difficult="setDifficult"
+      @user-selected-consecutive="setConsecutive" />
 
     <img class="logo" alt="Vue logo" src="./assets/logo.png" />
     <h1>Remember Me on VUE 3</h1>
@@ -12,6 +13,7 @@
     <Board 
       :sizeOfBoard="size" 
       :customDifficult="difficult"
+      :isConsecutive="isConsecutive"
       :setNewSize="incrementSize" />
   </div>
 </template>
@@ -31,6 +33,7 @@ export default {
   setup() {
     const size = ref(0);
     const difficult = ref(0);
+    const isConsecutive = ref(false)
 
     function setSizeOfBoard(newSize) {
       size.value = newSize;
@@ -42,6 +45,10 @@ export default {
       size.value = DIMENSIONS.find(size => size ** 2 > customDifficult * 2);
     }
 
+    function setConsecutive() {
+      isConsecutive.value = !isConsecutive.value;
+    }
+
     function incrementSize() {
       size.value += 1;
     }
@@ -49,8 +56,10 @@ export default {
     return {
       size,
       difficult,
+      isConsecutive,
       setSizeOfBoard,
       setDifficult,
+      setConsecutive,
       incrementSize
     }
   }

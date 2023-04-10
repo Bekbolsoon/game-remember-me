@@ -257,9 +257,17 @@ label {
   transition: opacity 1s ease-in-out;
   fill: #41b883;
 }
-@media screen and (-ms-high-contrast: active) {
-  .toggle-track {
-    border-radius: 0;
+@media (max-width: 750px) {
+  .settings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .settings__item {
+    margin-top: 1rem;
+  }
+  .settings__item:first-child {
+    margin-top: 0;
   }
 }
 </style>

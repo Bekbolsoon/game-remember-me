@@ -4,7 +4,9 @@ import { computed } from 'vue';
 export default function prepareGame(initFields, fields, difficult, numberOfItems, gameStatus) {  
   const prepare = () => {
     initFields();
-    fillFields();
+    if (gameStatus.value !== GAME_STATUS.TRANSITION) {
+      fillFields();
+    }
   };
 
   /* Filling fields with the desired values */

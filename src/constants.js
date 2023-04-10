@@ -7,8 +7,12 @@ export const FIELD = {
 
 export const START_DIFFICULT = 4;
 export const MAX_DIFFICULT = 10;
-export const GAME_SPEED = 2000;
 
+export const GAME_SPEED = {
+  NEW_SIZE: 2000,
+  NEW_DIFFICULT: 500,
+  ANIMATION_BOARD: 500
+};
 export const GAME_STATUS = {
   NONE: 0,
   CONSECUTIVE_PREVIEW: 1,

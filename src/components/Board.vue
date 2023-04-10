@@ -77,7 +77,7 @@ export default {
           .filter((element) => element !== null);
 
         const showFilledFields = () => {
-          const delay = 1000;
+          const delay = 500;
           
           idx.forEach((index, i) => {
             setTimeout(() => {
@@ -99,7 +99,7 @@ export default {
         gameStatus.value = GAME_STATUS.PREVIEW;
         setTimeout(() => {
           gameStatus.value = GAME_STATUS.STARTED;
-        }, GAME_SPEED);
+        }, GAME_SPEED.NEW_SIZE);
       }
     }
 
@@ -124,19 +124,13 @@ export default {
         initFields();
         setTimeout(() => {
           notNextLevel.value = true;
-        }, 500);
+        }, GAME_SPEED.ANIMATION_BOARD);
       }
     );
     watch( 
       () => props.customDifficult, 
       () => {
         difficult.value = props.customDifficult;
-      }
-    );
-    watch( 
-      () => props.isConsecutive, 
-      () => {
-        
       }
     );
 

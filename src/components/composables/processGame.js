@@ -41,12 +41,13 @@ export default function processGame(fields, gameStatus, difficult, start, initFi
 
     setTimeout( () => {
       initFields();
+      gameStatus.value = GAME_STATUS.STARTED;
 
       setTimeout(() => {
         difficult.value++;
-        start();
-      }, 1000);
-    }, GAME_SPEED);
+        // start();
+      }, GAME_SPEED.NEW_DIFFICULT);
+    }, GAME_SPEED.NEW_SIZE);
   }
 
   /* for drawing information about win/loss */

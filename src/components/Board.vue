@@ -1,5 +1,4 @@
 <template>
-  {{ isConsecutive }}
   <div class="board-wrapper">
     <transition name="fade">
       <div 
@@ -15,11 +14,11 @@
       </div>
     </transition>
 
-    <p class="difficult">Текущая сложность: <span>{{ difficult }}</span></p>
-    <p class="win" v-if="isWin">Поздравляем! Продолжаем играть!</p>
-    <p class="fail" v-if="isFail">Вы проиграли. Попробуйте еще раз!</p>
+    <p class="difficult">current difficulty: <span>{{ difficult }}</span></p>
+    <p class="win" v-if="isWin">Congratulations! Let's keep playing!</p>
+    <p class="fail" v-if="isFail">You lose. Try again!</p>
 
-    <button class="btn" @click="start" :disabled="!canStartGame">Старт</button>
+    <button class="btn" @click="start" :disabled="!canStartGame">start</button>
   </div>
 </template>
 

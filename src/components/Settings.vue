@@ -1,7 +1,7 @@
 <template>
   <div class="settings">
     <div class="settings__item">
-      <label for="size-of-board">Размер доски</label>
+      <label for="size-of-board">board size</label>
       <div class="select-size">
         <select
           id="size-of-board"
@@ -16,7 +16,7 @@
     </div>
 
     <div class="settings__item">
-      <label for="custom-difficult">Сложность (опционально)</label>
+      <label for="custom-difficult">difficulty (optional)</label>
       <div class="input-difficult">
         <input
           type="number"
@@ -31,7 +31,7 @@
 
     <div class="settings__item">
       <label class="toggle" for="appearCheckbox">
-        Последовательное появление
+        consecutive appearance
         <input 
           type="checkbox" 
           v-model="isConsecutive"

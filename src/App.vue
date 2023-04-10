@@ -8,7 +8,7 @@
 
     <img class="logo" alt="Vue logo" src="./assets/logo.png" />
     <h1>Remember Me on VUE 3</h1>
-    <p>Запомни и открой все <span>зелёные</span> клетки</p>
+    <p>Remember and open all <span>green</span> cells</p>
 
     <Board 
       :sizeOfBoard="size" 
